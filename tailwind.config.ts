@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import colors from "tailwindcss/colors";
 
 const config: Config = {
   content: [
@@ -14,7 +15,25 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
     },
+    colors: {
+      transparent: "transparent",
+      current: "currentColor",
+      white: colors.white,
+      purple: {
+        500: "#7945FF",
+        600: "#5C2DD5",
+      },
+      primary: "#FFCE67",
+      secondary: "#FD6687",
+      accent: "#FD6687",
+    },
   },
+  variants: {
+    extend: {
+      visibility: ["group-hover"],
+    },
+  },
+
   plugins: [],
 };
 export default config;
