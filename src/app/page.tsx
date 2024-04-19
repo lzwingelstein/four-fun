@@ -14,7 +14,7 @@ export default function Home() {
         icon={P2PIcon}
         className="bg-primary"
       ></BLink>
-      <p className="pb-[30px]"></p>
+      <p className="pb-6"></p>
       <BLink href="/rules" text="GAME RULES" className="bg-white"></BLink>
       <p className="pb-[80px]"></p>
       <p className="pb-[52px]"></p>

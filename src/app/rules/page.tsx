@@ -4,7 +4,7 @@ import IconCheck from "@/assets/images/icon-check.svg";
 
 export default function RulesPage() {
   return (
-    <main className="flex flex-col h-[100vh] justify-center items-center p-5 ">
+    <main className="flex flex-col h-[100vh] justify-center items-center p-5">
       <div className="dshape bg-white px-3 w-full py-8 rounded-[48px] relative">
         <h1 className="text-center">RULES</h1>
         <p className="pb-6"></p>
