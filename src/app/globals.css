@@ -28,10 +28,27 @@
   p {
     @apply text-base font-medium;
   }
+  li {
+    @apply text-base font-medium;
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.bshape {
+  box-shadow: 0px 8px 0px 0px #000000;
+  border-width: 2px;
+  border-color: black;
+  border-radius: 20px;
+}
+
+.dshape {
+  box-shadow: 0px 8px 0px 0px #000000;
+  border-width: 2px;
+  border-color: black;
+  border-radius: 40px;
 }

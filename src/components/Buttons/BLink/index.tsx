@@ -1,5 +1,4 @@
 import clsx from "clsx";
-import classes from "../shadow.module.css";
 import Link from "next/link";
 import Image from "next/image";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
@@ -20,9 +19,8 @@ export default function BLink({
     <Link
       href={href}
       className={clsx(
-        "text-black font-bold py-2 px-4 rounded-[20px] flex justify-between items-center w-[335px] h-[72px] mb-2",
-        className,
-        classes.mshadow
+        "bshape text-black font-bold py-2 px-4 flex justify-between items-center w-[335px] h-[72px] mb-2",
+        className
       )}
     >
       <h2>{text}</h2>
