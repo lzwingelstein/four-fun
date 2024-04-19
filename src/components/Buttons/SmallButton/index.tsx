@@ -11,7 +11,7 @@ export default function SmallButton({
   return (
     <button
       className={clsx(
-        "bg-purple-600 text-white font-bold p-2 px-4 rounded-full flex text-center items-center w-[108px] h-[39px]",
+        "bg-purple-600 text-white font-bold p-2 px-4 rounded-full flex justify-center items-center w-[108px] h-[39px]",
         className
       )}
       {...props}
