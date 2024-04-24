@@ -3,10 +3,12 @@ import clsx from "clsx";
 export default function SmallButton({
   className,
   children,
+  onClick,
   ...props
 }: Readonly<{
   children: React.ReactNode;
   className?: string;
+  onClick?: () => void;
 }>) {
   return (
     <button
@@ -15,6 +17,7 @@ export default function SmallButton({
         className
       )}
       {...props}
+      onClick={onClick}
     >
       {children}
     </button>
