@@ -181,6 +181,9 @@ export class Game {
       }
     }
 
+    miny = Math.max(y - 3, 3);
+    maxy = Math.min(y + 3, this._rows - 1);
+
     // Check diagonal from top left to bottom right
     for (let ty = maxy; ty >= miny; ty--) {
       for (let tx = minx; tx <= maxx; tx++) {

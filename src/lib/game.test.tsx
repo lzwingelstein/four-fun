@@ -56,6 +56,89 @@ describe("Play", () => {
       );
     });
 
+    it("should be possible to push token into non full column", () => {
+      const config: GameConfig = {
+        board: [
+          [0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0],
+          [1, 2, 1, 1, 2, 0],
+          [2, 2, 1, 2, 0, 0],
+          [1, 1, 0, 0, 0, 0], // <= 1
+          [2, 1, 0, 0, 0, 0],
+          [1, 0, 0, 0, 0, 0],
+        ],
+      };
+      const game = new Game(config);
+
+      const err = game.pushToken(4);
+      expect(err).toBeNull();
+      expect(game.board).toEqual([
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0],
+        [1, 2, 1, 1, 2, 0],
+        [2, 2, 1, 2, 0, 0],
+        [1, 1, 1, 0, 0, 0], // <= 1
+        [2, 1, 0, 0, 0, 0],
+        [1, 0, 0, 0, 0, 0],
+      ]);
+    });
+
+    it("should be possible to push token into non full column", () => {
+      const config: GameConfig = {
+        board: [
+          [0, 0, 0, 0, 0, 0],
+          [1, 2, 2, 2, 1, 0],
+          [1, 2, 1, 1, 2, 0],
+          [2, 2, 1, 2, 0, 0],
+          [1, 1, 1, 0, 0, 0],
+          [2, 1, 0, 0, 0, 0],
+          [1, 0, 0, 0, 0, 0],
+        ],
+        firstToPlay: Player.TWO,
+      };
+      const game = new Game(config);
+
+      const err = game.pushToken(1);
+      expect(err).toBeNull();
+      expect(game.board).toEqual([
+        [0, 0, 0, 0, 0, 0],
+        [1, 2, 2, 2, 1, 2],
+        [1, 2, 1, 1, 2, 0],
+        [2, 2, 1, 2, 0, 0],
+        [1, 1, 1, 0, 0, 0],
+        [2, 1, 0, 0, 0, 0],
+        [1, 0, 0, 0, 0, 0],
+      ]);
+    });
+
+    it("should be possible to push token into non full column", () => {
+      const config: GameConfig = {
+        board: [
+          [0, 0, 0, 0, 0, 0],
+          [1, 0, 0, 0, 0, 0],
+          [2, 1, 0, 0, 0, 0],
+          [1, 1, 1, 0, 0, 0],
+          [2, 2, 1, 2, 0, 0],
+          [1, 2, 1, 1, 2, 0],
+          [1, 2, 2, 2, 1, 0], // <=2
+        ],
+        firstToPlay: Player.TWO,
+      };
+      const game = new Game(config);
+
+      const err = game.pushToken(6);
+      expect(err).toBeNull();
+      expect(game.board).toEqual([
+        [0, 0, 0, 0, 0, 0],
+        [1, 0, 0, 0, 0, 0],
+        [2, 1, 0, 0, 0, 0],
+        [1, 1, 1, 0, 0, 0],
+        [2, 2, 1, 2, 0, 0],
+        [1, 2, 1, 1, 2, 0],
+        [1, 2, 2, 2, 1, 2], // <=2
+      ]);
+    });
+
     it("should be possible to push token into an empty column", () => {
       const config: GameConfig = {
         board: mergeColInBoard(stubEmptyBoard, 0, [0, 0, 0, 0, 0, 0]),
