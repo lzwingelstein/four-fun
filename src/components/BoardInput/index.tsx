@@ -22,7 +22,8 @@ export default function BoardInput({
       <div
         className={`${classes.boardInput} h-full flex-1 relative`}
         onClick={() => onClick(i)}
-        key={`row-${i}`}
+        key={`input-row-${i}`}
+        data-testid={`input-row-${i}`}
       >
         <Image
           src={player === Player.ONE ? imgMarkerRed : imgMarkerYellow}

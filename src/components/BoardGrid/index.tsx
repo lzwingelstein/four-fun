@@ -12,7 +12,13 @@ export default function BoardGrid({ className, value }: BoardGridProps) {
     const tokens = [];
     const col: Cell[] = value[i];
     for (let x = col.length - 1; x >= 0; x--) {
-      tokens.push(<Token value={col[x]} key={`cell-${x}-${i}`}></Token>);
+      tokens.push(
+        <Token
+          value={col[x]}
+          key={`cell-${x}-${i}`}
+          data-testid={`cell-${x}-${i}`}
+        ></Token>
+      );
     }
     rows.push(
       <div className={`h-full flex-1 relative`} key={`row-${i}`}>
