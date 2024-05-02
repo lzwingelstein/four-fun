@@ -13,8 +13,10 @@ import { Game } from "@/lib/game";
 import { Player, Status } from "@/lib/types";
 import BoardGrid from "@/components/BoardGrid";
 import BoardInput from "@/components/BoardInput";
+import { useRouter } from "next/navigation";
 
 export default function PlayVsPlayerPage() {
+  const router = useRouter();
   const [counter, setCounter] = useState(15);
   const [score, setScore] = useState({ player1: 0, player2: 0 });
   const game = useRef<Game>(new Game({ firstToPlay: Player.ONE }));
@@ -44,19 +46,38 @@ export default function PlayVsPlayerPage() {
     setForceUpdate(Date.now());
   }
 
+  function restart() {
+    game.current = new Game({ firstToPlay: game.current.currentPlayer });
+    setForceUpdate(Date.now());
+  }
+
+  function gotoMenu() {
+    router.push("/");
+  }
+
+  function getFooterBgColor() {
+    if (game.current.winner === null) {
+      return "bg-purple-600";
+    } else if (game.current.winner === Player.ONE) {
+      return "bg-red-600";
+    } else if (game.current.winner === Player.TWO) {
+      return "bg-yellow-600";
+    }
+  }
+
   return (
     <main className="flex flex-col h-[100vh]">
       <div className="px-5 z-20">
         <nav className="py-10">
           <ul className="flex flex-row justify-between items-center">
             <li className="w-fit">
-              <SmallButton>MENU</SmallButton>
+              <SmallButton onClick={gotoMenu}>MENU</SmallButton>
             </li>
             <li className="w-fit">
               <Image src={logo} width={58} height={61} alt="logo"></Image>
             </li>
             <li className="w-fit">
-              <SmallButton>RESTART</SmallButton>
+              <SmallButton onClick={restart}>RESTART</SmallButton>
             </li>
           </ul>
         </nav>
@@ -134,11 +155,19 @@ export default function PlayVsPlayerPage() {
             }}
             className="w-[196px] h-[164px] pt-10 absolute top-[-20px] m-auto left-0 right-0"
           >
-            <h4 className="text-white text-center">
-              PLAYER {game.current.currentPlayer}&apos;S TURN
-            </h4>
-            <p className="pb-3"></p>
-            <h1 className="text-white text-center">{counter}s</h1>
+            <div
+              className={
+                game.current.currentPlayer === Player.ONE
+                  ? "text-white"
+                  : "text-black"
+              }
+            >
+              <h4 className="text-center">
+                PLAYER {game.current.currentPlayer}&apos;S TURN
+              </h4>
+              <p className="pb-3"></p>
+              <h1 className="text-center">{counter}s</h1>
+            </div>
           </div>
         </div>
       )}
@@ -156,7 +185,9 @@ export default function PlayVsPlayerPage() {
         </div>
       )}
 
-      <footer className="h-full rounded-t-[60px] bg-purple-600 relative z-10"></footer>
+      <footer
+        className={`h-full rounded-t-[60px] ${getFooterBgColor()} relative z-10`}
+      ></footer>
     </main>
   );
 }
